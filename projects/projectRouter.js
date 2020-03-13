@@ -38,6 +38,39 @@ router.post('/', validateProject, (req, res) => {
         })
 })
 
+router.put('/:id', validateId, validateProject, (req, res) => {
+    let updatedProject = {
+        name: req.body.name,
+        description: req.body.description,
+        completed: req.body.completed
+    }
+    Project.update(req.project.id, updatedProject)
+        .then(project => {
+            res.status(200).json(project)
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json({
+                error: "There was an error updating the project"
+            })
+        })
+})
+
+router.delete('/:id', validateId, (req, res) => {
+    Project.remove(req.project.id)
+        .then(count => {
+            res.status(200).json({
+                message: `${count} record deleted`
+            })
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json({
+                error: "There was an error deleting project"
+            })
+        })
+})
+
 function validateId(req, res, next) {
     const { id } = req.params;
     console.log('Validating id..');
@@ -74,7 +107,7 @@ function validateProject(req, res, next) {
         res.status(400).json({
             message: "Missing required description field"
         });
-    } else {
+    } else {        
         next();
     }
 }
