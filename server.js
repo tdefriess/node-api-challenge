@@ -10,7 +10,7 @@ server.get('/', (req, res) => {
     res.send({ message: 'Welcome to my sprint challenge API' });
 });
 
-// server.use('/api/projects', projectRouter);
+server.use('/api/projects', projectRouter);
 // server.use('/api/actions', actionRouter);
 
 function logger(req, res, next) {
