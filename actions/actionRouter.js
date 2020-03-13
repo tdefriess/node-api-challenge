@@ -41,6 +41,40 @@ router.get('/:id', validateId, (req, res) => {
     res.status(200).json(req.action);
 })
 
+router.put('/:id', validateId, validateAction, (req, res) => {
+    let updatedAction = {
+        project_id: req.body.project_id,
+        description: req.body.description,
+        notes: req.body.notes,
+        completed: req.body.completed
+    }
+    Action.update(req.action.id, updatedAction)
+        .then(action => {
+            res.status(200).json(action)
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json({
+                error: "There was an error updating the action"
+            })
+        })
+})
+
+router.delete('/:id', validateId, (req, res) => {
+    Action.remove(req.action.id)
+        .then(count => {
+            res.status(200).json({
+                message: `${count} record deleted`
+            })
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json({
+                error: "There was an error deleting action"
+            })
+        })
+})
+
 function validateId(req, res, next){
     const { id } = req.params;
     console.log('Validating action id...');

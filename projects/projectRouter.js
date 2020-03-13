@@ -21,6 +21,10 @@ router.get('/:id', validateId, (req, res) => {
     res.status(200).json(req.project)
 })
 
+router.get('/:id/actions', validateId, (req, res) => {
+    res.status(200).json(req.project.actions);
+})
+
 router.post('/', validateProject, (req, res) => {
     let newProject = {
         name: req.body.name,
