@@ -1,10 +1,12 @@
 const express = require('express');
+const cors = require('cors');
 const projectRouter = require('./projects/projectRouter');
 const actionRouter = require('./actions/actionRouter')
 
 const server = express();
 
 server.use(express.json());
+server.use(cors());
 server.use(logger);
 
 server.get('/', (req, res) => {
