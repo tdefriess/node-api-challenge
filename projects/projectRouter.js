@@ -24,7 +24,8 @@ router.get('/:id', validateId, (req, res) => {
 router.post('/', validateProject, (req, res) => {
     let newProject = {
         name: req.body.name,
-        description: req.body.description
+        description: req.body.description,
+        completed: req.body.completed
     }
     Project.insert(newProject)
         .then(project => {
