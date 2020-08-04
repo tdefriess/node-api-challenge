@@ -40,13 +40,23 @@ Demonstrate your understanding of this Sprint's concepts by answering the follow
 
 - [ ] Mention two parts of Express that you learned about this week.
 
+Express is a web application framework built on top of Node.js. Express adds extra functionality, including routing, support for middleware and simpler API.
+
 - [ ] Describe Middleware?
+
+Middleware are functions that work on data entering or leaving a logic chain, and perform functions like logging what is happening, modify the data to prepare for later logic, or performs validation, among other possibilities.
 
 - [ ] Describe a Resource?
 
+A resource is a collection of data. In Node, this is data that is managed by a server with a set of endpoint that clients can use to gain access or modify the data as needed.
+
 - [ ] What can the API return to help clients know if a request was successful?
 
+A response with a status code 200 or 201.
+
 - [ ] How can we partition our application into sub-applications?
+
+By building components. In the context of Node, an example is building different routers to handle collections of similar endpoints.
 
 ## Minimum Viable Product
 
